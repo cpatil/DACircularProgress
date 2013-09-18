@@ -39,13 +39,20 @@
     CGPoint centerPoint = CGPointMake(rect.size.height / 2.0f, rect.size.width / 2.0f);
     CGFloat radius = MIN(rect.size.height, rect.size.width) / 2.0f;
     
+    // cp
+    CGFloat radiusTint= MIN(rect.size.height, rect.size.width) / 2.1;
+    
+    
     CGFloat progress = MIN(self.progress, 1.0f - FLT_EPSILON);
     CGFloat radians = (progress * 2.0f * M_PI) - M_PI_2;
     
     CGContextSetFillColorWithColor(context, self.trackTintColor.CGColor);
     CGMutablePathRef trackPath = CGPathCreateMutable();
     CGPathMoveToPoint(trackPath, NULL, centerPoint.x, centerPoint.y);
-    CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radius, 3.0f * M_PI_2, -M_PI_2, NO);
+//    CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radius, 3.0f * M_PI_2, -M_PI_2, NO);
+    // cp
+    CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radiusTint, 3 * M_PI_2, -M_PI_2, NO);
+    
     CGPathCloseSubpath(trackPath);
     CGContextAddPath(context, trackPath);
     CGContextFillPath(context);
